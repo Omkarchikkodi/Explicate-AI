@@ -1,0 +1,151 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-surface font-body text-ink-900 antialiased;
+    font-feature-settings: "kern" 1, "liga" 1;
+  }
+
+  ::selection {
+    @apply bg-accent/20 text-ink-900;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-ink-200 rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-ink-300;
+  }
+}
+
+@layer components {
+  .prose-explicate {
+    @apply text-ink-800 leading-relaxed;
+  }
+
+  .prose-explicate h1,
+  .prose-explicate h2,
+  .prose-explicate h3 {
+    @apply font-display text-ink-900 font-semibold mt-6 mb-3;
+  }
+
+  .prose-explicate h1 { @apply text-2xl; }
+  .prose-explicate h2 { @apply text-xl; }
+  .prose-explicate h3 { @apply text-lg; }
+
+  .prose-explicate p {
+    @apply mb-4 leading-7;
+  }
+
+  .prose-explicate ul {
+    @apply mb-4 ml-5 list-disc space-y-1;
+  }
+
+  .prose-explicate ol {
+    @apply mb-4 ml-5 list-decimal space-y-1;
+  }
+
+  .prose-explicate li {
+    @apply leading-6;
+  }
+
+  .prose-explicate strong {
+    @apply text-ink-900 font-semibold;
+  }
+
+  .prose-explicate em {
+    @apply italic;
+  }
+
+  .prose-explicate code {
+    @apply font-mono text-sm bg-ink-100 text-accent-dark px-1.5 py-0.5 rounded;
+  }
+
+  .prose-explicate pre {
+    @apply bg-ink-950 text-ink-100 rounded-lg p-4 overflow-x-auto mb-4 font-mono text-sm;
+  }
+
+  .prose-explicate pre code {
+    @apply bg-transparent text-inherit p-0;
+  }
+
+  .prose-explicate blockquote {
+    @apply border-l-4 border-accent/50 pl-4 italic text-ink-600 my-4;
+  }
+
+  .prose-explicate a {
+    @apply text-accent underline underline-offset-2 hover:text-accent-dark transition-colors;
+  }
+
+  .prose-explicate hr {
+    @apply border-ink-200 my-6;
+  }
+
+  .prose-explicate table {
+    @apply w-full border-collapse mb-4 text-sm;
+  }
+
+  .prose-explicate th {
+    @apply bg-ink-100 text-ink-700 font-semibold text-left px-3 py-2 border border-ink-200;
+  }
+
+  .prose-explicate td {
+    @apply px-3 py-2 border border-ink-200;
+  }
+
+  .prose-explicate tr:nth-child(even) td {
+    @apply bg-ink-50/50;
+  }
+}
+
+/* Cursor blink animation for streaming */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.streaming-cursor::after {
+  content: "▋";
+  display: inline-block;
+  animation: blink 1s step-end infinite;
+  color: theme("colors.accent.DEFAULT");
+  font-size: 0.9em;
+  margin-left: 1px;
+  vertical-align: middle;
+}
+
+/* Shimmer loading effect */
+@keyframes shimmer {
+  0% { background-position: -1000px 0; }
+  100% { background-position: 1000px 0; }
+}
+
+.shimmer {
+  background: linear-gradient(
+    90deg,
+    theme("colors.ink.100") 25%,
+    theme("colors.ink.50") 50%,
+    theme("colors.ink.100") 75%
+  );
+  background-size: 1000px 100%;
+  animation: shimmer 2s infinite linear;
+}
