@@ -7,7 +7,7 @@ import json
 from fastapi import APIRouter, HTTPException
 from fastapi.responses import StreamingResponse
 from pydantic import BaseModel
-from backend.agents.research_agent import ExplicateAgent
+from  agents.research_agent import ExplicateAgent
 
 router = APIRouter()
 agent = ExplicateAgent()

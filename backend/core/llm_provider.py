@@ -2,7 +2,7 @@
 # from openai import AsyncOpenAI
 # from google import genai
 
-# from backend.core.config import settings
+# from  core.config import settings
 
 
 # def get_llm_client():
@@ -78,7 +78,7 @@ from google import genai
 from anthropic import AsyncAnthropic
 from openai import AsyncOpenAI
 
-from backend.core.config import settings
+from  core.config import settings
 
 
 def get_llm_client():

@@ -10,9 +10,9 @@ import json
 import asyncio
 from typing import AsyncGenerator
 
-from backend.core.llm_provider import get_llm_client
-from backend.core.config import settings
-from backend.tools.web_tools import (
+from  core.llm_provider import get_llm_client
+from  core.config import settings
+from  tools.web_tools import (
     TOOL_DEFINITIONS,
     execute_tool,
     get_openai_tools,
