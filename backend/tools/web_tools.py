@@ -116,35 +116,40 @@ async def _web_search(query: str, num_results: int = 5) -> dict:
 
     try:
 
+        print("=" * 60)
+        print("STARTING SEARCH:", query)
+        print("=" * 60)
+
         with DDGS() as ddgs:
 
             results = list(
                 ddgs.text(
                     query,
+                    region="wt-wt",
+                    safesearch="off",
                     max_results=num_results
                 )
             )
+
+        print("RAW RESULTS:")
+        print(results)
 
         formatted = []
 
         for r in results:
 
-            formatted.append(
-                {
-                    "title": r.get("title", ""),
-                    "url": r.get("href", ""),
-                    "snippet": r.get("body", ""),
-                }
-            )
+            formatted.append({
+                "title": r.get("title", ""),
+                "url": r.get("href", ""),
+                "snippet": r.get("body", ""),
+            })
 
-        print("\n" + "=" * 60)
-        print("SEARCH QUERY:", query)
-        print("=" * 60)
+        print("TOTAL FOUND:", len(formatted))
 
         for r in formatted:
             print("TITLE:", r["title"])
             print("URL:", r["url"])
-            print("-" * 60)
+            print("-" * 50)
 
         return {
             "query": query,
@@ -154,13 +159,20 @@ async def _web_search(query: str, num_results: int = 5) -> dict:
 
     except Exception as e:
 
-        print("SEARCH ERROR:", str(e))
+        import traceback
+
+        print("=" * 60)
+        print("SEARCH ERROR")
+        print("=" * 60)
+
+        traceback.print_exc()
 
         return {
             "error": str(e),
             "query": query,
             "results": [],
         }
+
 async def _fetch_page(url: str) -> dict:
     """Fetch and clean a web page's text content."""
     try:

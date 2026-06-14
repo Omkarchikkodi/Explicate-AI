@@ -272,11 +272,20 @@ class ExplicateAgent:
 
         # Check after building context
 
+        if not search_result.get("results"):
+
+            yield {
+                "type": "error",
+                "message": "Web search returned no results."
+            }
+
+            return
+
         if not research_context.strip():
 
             yield {
                 "type": "error",
-                "message": "Unable to gather source content."
+                "message": "Pages were found but content extraction failed."
             }
 
             return
