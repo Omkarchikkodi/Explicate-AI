@@ -1,6 +1,6 @@
 import type { AgentEvent, Message } from "../types";
 
-const API_BASE = "/api";
+const API_BASE = "https://explicate-ai-backend.onrender.com/api";
 
 export async function* streamQuery(
   query: string,
