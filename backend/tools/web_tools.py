@@ -6,7 +6,7 @@ These tools are passed to Claude via the Anthropic API.
 import httpx
 from bs4 import BeautifulSoup
 from typing import Any
-from duckduckgo_search  import DDGS
+from ddgs  import DDGS
 
 # ── Tool schemas (sent to the Anthropic API) ──────────────────────────────────
 
