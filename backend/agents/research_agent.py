@@ -201,9 +201,14 @@ class ExplicateAgent:
 
         page_results = []
 
+        print("URLS FOUND:", len(urls))
+        print(urls)
+
         for url in urls[:3]:
 
             try:
+
+                print("FETCHING:", url)
 
                 result = await execute_tool(
                     "fetch_page",
@@ -212,7 +217,14 @@ class ExplicateAgent:
                     }
                 )
 
+                print("FETCH RESULT:")
+                print(result)
+
                 page_results.append(result)
+
+            except Exception as e:
+
+                print("FETCH ERROR:", str(e))
 
                 yield {
                     "type": "tool_call",
@@ -232,6 +244,14 @@ class ExplicateAgent:
         # =====================================================
         # STEP 3: BUILD RESEARCH CONTEXT
         # =====================================================
+
+        print("PAGE RESULTS COUNT:", len(page_results))
+
+        for i, page in enumerate(page_results):
+            print(f"PAGE {i}")
+            print("URL:", page.get("url"))
+            print("TITLE:", page.get("title"))
+            print("CONTENT LENGTH:", len(page.get("content", "")))
 
         research_context = ""
 
